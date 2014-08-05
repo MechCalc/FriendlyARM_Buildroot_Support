@@ -1,0 +1,25 @@
+#!/bin/sh
+#
+# Load WiFi Module Libertas SDIO....
+#
+
+case "$1" in
+  start)
+        echo "Loading Libertas WiFI..."
+        modprobe libertas_sdio
+        ;;
+  stop)
+        echo "Unloading Libertas WiFi..."
+        modprobe -r libertas_sdio
+        ;;
+  restart|reload)
+        "$0" stop
+        "$0" start
+        ;;
+  *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+esac
+
+exit $?
+

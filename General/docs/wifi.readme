@@ -1,0 +1,40 @@
+If you have the add-on SDIO WiFi board, you'll need to enable a couple kernel modules and configure a few things on your board, once it has booted up. If you have a USB dongle, or some other WiFi adapter, you'll need different kernel drivers, and possibly other configuration options. Also note the difference in "System configuration" below.
+
+Networking Support --> Wireless -->
+<M> cfg80211
+  <M> Generic IEEE 802.11 Networking Stack (mac80211)
+
+Device drivers --> Network device support --> Wireless LAN -->
+<M> Marvell 8xxx Libertas WLAN driver suport
+	<M> Marvel Libertas 8385/8686/8688 SDIO 802.11b/g cards
+
+Depending on your wireless needs, you'll need these userspace programs.
+
+Target packages --> Networking applications --> 
+[*] iw (Optional)
+
+[*] wpa_supplicant (For WPA/WPA2 Security)
+	[*] Install wpa_cli binary (optional)
+	[*] Install wpa_passphrase binary
+
+There are a couple scipts included with this Buildroot, that will install some needed files. You can provide them with arguments, to install certain needed WiFi files. Before you compile, run
+     $ make menuconfig
+
+Navigate to "System configuration" and scroll to the bottom, to "() Extra post-{build,image} arguments" and "Select" it.
+Depending on your chosen config and board, you'll see something like "ubi" or "yaffs2", add the key word, "sdio_wifi" or "wifi" if using something other than FriendlyARM's SDIO wifi addon, seperated by a space.
+
+Make any other adjustments you'll need, and compile.
+
+After compiling Buildroot and flashing to NAND, you need to configure "/etc/wpa_supplicant.conf". Run the following program on your device to create the necessary settings.
+
+     $ wpa_passphrase <ssid> <passphrase>
+
+Then replace the "network" entry with the one you generated in /etc/wpa_supplicant.conf.
+
+Firmware,
+Included is sd9696-9.70.20.p0.bin from http://dev.laptop.org/pub/firmware/libertas/
+
+There is another option on that page or look here http://www.marvell.com/support/downloads/driverSearchResults.do if you require a different one.
+
+If you are doing something different than the SDIO WiFi, you'll need to supply the firmware.
+http://git.kernel.org/cgit/linux/kernel/git/firmware/linux-firmware.git/tree/
