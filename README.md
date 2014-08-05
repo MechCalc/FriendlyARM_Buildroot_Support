@@ -2,7 +2,8 @@
 This is a collection of files for use with [Buildroot](http://buildroot.uclibc.org/) RootFS/Kernel build system. The pre-canned setups provided are very basic, both for Userspace and the Kernels, allowing the user to configure in just what they require.
 
 ### Currently Supported Boards ###
-* 210 Series boards.
+* 210 Series
+* 2451 Series
 
 ## Installation ##
 First is to get a copy of Buildroot.
