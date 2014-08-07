@@ -4,6 +4,7 @@ This is a collection of files for use with [Buildroot](http://buildroot.uclibc.o
 ### Currently Supported Boards ###
 * 210 Series
 * 2451 Series
+* 4412 Series
 
 ## Installation ##
 First is to get a copy of Buildroot.
@@ -20,7 +21,7 @@ If you look in the _FriendlyARM\_Buildroot\_Support/configs_ directory, there wi
 
     $ make BR2_EXTERNAL=/path/to/FriendlyARM_Buildroot_Support fa210_yaffs2_min_defconfig
 
-Note the BR2_EXTERNAL, this sets the path to this Support pacakge, it will need to be set on first run, and after make cleans. It tells buildroot where to find this package. With this set up it allows you to run git pull in your Buildroot directory, to pull in the latest updates, with out causing issues or conflicts. Same with this repo.
+Note the BR2_EXTERNAL, this sets the path to this Support pacakge, it will need to be set on first run. It tells buildroot where to find this package. With this set up it allows you to run git pull in your Buildroot directory, to pull in the latest updates, with out causing issues or conflicts. Same with this repo.
 
 Now you can add and configure to your specific needs. Both Buildroot and Busybox have Packages options where you can specify what applications you want to install. Busybox is more base needs, while Buildroot has more specific user applications.
 
